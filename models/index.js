@@ -1,3 +1,4 @@
+
 'use strict';
 
 import fs from 'fs';
@@ -5,6 +6,7 @@ import path from 'path';
 import Sequelize from 'sequelize';
 import process from 'process';
 import config from '../config/config.js';
+import { pathToFileURL } from 'url';
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -14,6 +16,8 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config[env].database, config[env].username, config[env].password, config[env]);
 }
+
+
 
 const models = await Promise.all(fs
   .readdirSync(import.meta.dirname)
@@ -27,10 +31,14 @@ const models = await Promise.all(fs
     );
   })
   .map(async file => {
-    const module = await import(path.join(import.meta.dirname, file));
+    const filePath = path.join(import.meta.dirname, file);
+    const fileUrl = pathToFileURL(filePath).href;
+    //const module = await import(path.join(import.meta.dirname, file));
+    const module = await import(fileUrl);
     return module.default(sequelize, Sequelize.DataTypes);
   })
 );
+
 
 const db = models.reduce((acc, model) => {
   acc[model.name] = model;
