@@ -8,12 +8,28 @@ module.exports = {
       return {
         name: faker.internet.username(),
         password: faker.internet.password(),
+        isOrganizer: false,
+        createdAt: Date(),
+        updatedAt: Date(),
+      }
+    });
+
+    const mockCompetitors = new Array(100).fill().map((_, index) => {
+      const randomChance = Math.random();
+
+      return {
+        userId: index + 1,
+        name: mockUsers[index].name,
+        gender: randomChance < 0.95 ? faker.person.sex() : "other",
+        dateOfBirth: faker.date.between({ from: '2000-01-01', to: Date.now() }),
+        country: faker.location.country(),
         createdAt: Date(),
         updatedAt: Date(),
       }
     });
 
     await queryInterface.bulkInsert('Users', mockUsers, {});
+    await queryInterface.bulkInsert('Competitors', mockCompetitors, {});
   },
 
   async down (queryInterface, Sequelize) {
