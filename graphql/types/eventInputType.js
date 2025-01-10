@@ -1,6 +1,6 @@
-import {GraphQLObjectType, GraphQLInt, GraphQLString} from 'graphql'
+import {GraphQLInputObjectType, GraphQLInt, GraphQLString} from 'graphql'
 
-const eventInputType = new GraphQLObjectType({
+const eventInputType = new GraphQLInputObjectType({
     name: 'EventInput',
     fields: {
         name: { type: GraphQLString },
@@ -8,4 +8,4 @@ const eventInputType = new GraphQLObjectType({
     }
 });
 
-export default competitionType;
+export default eventInputType;

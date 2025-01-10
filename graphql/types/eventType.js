@@ -9,4 +9,4 @@ const eventType = new GraphQLObjectType({
     }
 });
 
-export default competitionType;
+export default eventType;
