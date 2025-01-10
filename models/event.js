@@ -8,7 +8,10 @@ export default (sequelize, DataTypes) => {
     }
   }
   Event.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      unique: true
+    },
     numberOfTimes: DataTypes.INTEGER
   }, {
     sequelize,

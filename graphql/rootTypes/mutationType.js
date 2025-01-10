@@ -5,6 +5,9 @@ import deleteUserMutation from '../mutations/deleteUserMutation.js';
 import loginMutation from '../mutations/loginMutation.js';
 import createCompetitorMutation from '../mutations/createCompetitorMutation.js';
 import createEventMutation from '../mutations/createEventMutation.js';
+import createCompetitionMutation from '../mutations/createComptetionMutation.js';
+import { createResult } from '../../core/services/createResultService.js';
+import createResultMutation from '../mutations/createResultMutation.js';
 
 // Define the Query type
 const queryType = new graphql.GraphQLObjectType({
@@ -16,6 +19,8 @@ const queryType = new graphql.GraphQLObjectType({
         login: loginMutation,
         createCompetitor: createCompetitorMutation,
         createEvent: createEventMutation,
+        createCompetition: createCompetitionMutation,
+        createResult: createResultMutation
     }
 });
 

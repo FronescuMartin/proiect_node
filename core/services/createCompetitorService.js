@@ -8,8 +8,6 @@ export const createCompetitor = async (competitor, context) => {
         dateOfBirth: competitor.dateOfBirth,
         country: competitor.country,
      });
- 
- 
 
      return createdCompetitor;
 }

@@ -7,12 +7,28 @@ export default (sequelize, DataTypes) => {
       Result.belongsTo(models.Event, {
         foreignKey: 'eventId',
       });
+
+      Result.belongsTo(models.Competition, {
+        foreignKey: 'competitionId',
+      });
+      Result.belongsTo(models.Competitor, {
+        foreignKey: 'competitorId',
+      });
     }
   }
   Result.init({
-    competitorId: DataTypes.INTEGER,
-    competitionId: DataTypes.INTEGER,
-    eventId: DataTypes.INTEGER,
+    competitorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    competitionId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    eventId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     // each result has 3 or 5 times, depending on event
     time1: DataTypes.FLOAT,
     time2: DataTypes.FLOAT,
@@ -25,7 +41,13 @@ export default (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Result',
-    timestamps: false,
+    timestamps: true,
+    indexes: [
+      {
+        unique: true,
+        fields: ['competitorId', 'competitionId', 'eventId']
+      }
+    ]
   });
   return Result;
 };

@@ -6,6 +6,7 @@ const createCompetitorMutationResolver = async (_, { competitor }, context) => {
     const isAuthorized = !!context.user_id
    
     if(!isAuthorized) {
+        console.log("User is not logged in");
         return false;
     }
     

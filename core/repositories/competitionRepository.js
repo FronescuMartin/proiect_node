@@ -1,24 +1,22 @@
 //useless??
-
 import db from '../../models/index.js';
-export const findOrCreateCompetitions = async (tags) => {
-    const tagsPromises = tags.map(async (tag) => {
-        const foundTag = await db.Tag.findOne({
-            where: {
-                name: tag,
-            }
-        });
-
-        if(!foundTag) {
-            const createdTag = await db.Tag.create({
-                name: tag,
-            });
-
-            return createdTag;
+export const findOrCreateCompetition = async (competition) => {
+    const foundCompetition = await db.Competition.findOne({
+        where: {
+            name: competition.name,
         }
-
-        return foundTag;
     });
 
-    return Promise.all(tagsPromises);
-}
+    if (!foundCompetition) {
+        const createdCompetition = await db.Competition.create({
+            name: competition.name,
+            city: competition.city,
+            country: competition.country,
+            date: competition.date,
+        });
+
+        return createdCompetition;
+    }
+
+    return foundCompetition;
+};
