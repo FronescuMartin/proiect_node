@@ -1,5 +1,7 @@
+//useless??
+
 import db from '../../models/index.js';
-export const findOrCreateTags = async (tags) => {
+export const findOrCreateCompetitions = async (tags) => {
     const tagsPromises = tags.map(async (tag) => {
         const foundTag = await db.Tag.findOne({
             where: {
