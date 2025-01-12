@@ -5,6 +5,9 @@ import competitorQuery from '../queries/competitorQuery.js';
 import eventQuery from '../queries/EventQuery.js';
 import competitionQuery from '../queries/competitionQuery.js';
 import resultQuery from '../queries/resultQuery.js';
+import competitorsQuery from '../queries/competitorsQuery.js';
+import eventsQuery from '../queries/eventsQuery.js';
+import competitionsQuery from '../queries/competitionsQuery.js';
 
 const queryType = new GraphQLObjectType({
     name: "Query",
@@ -12,8 +15,11 @@ const queryType = new GraphQLObjectType({
         user: userQuery,
         users: usersQuery,
         competitor: competitorQuery,
+        competitors: competitorsQuery,
         event: eventQuery,
+        events: eventsQuery,
         competition: competitionQuery,
+        competitions: competitionsQuery,
         result: resultQuery,
     },
 });

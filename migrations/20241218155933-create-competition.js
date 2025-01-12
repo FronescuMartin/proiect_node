@@ -46,6 +46,7 @@ module.exports = {
           },
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
       competitionId: {
         allowNull: false,
@@ -55,7 +56,8 @@ module.exports = {
             tableName: 'Competitions',
           },
           key: 'id',
-        }
+        },
+        onDelete: 'CASCADE',
       },
       eventId: {
         allowNull: false,
@@ -65,7 +67,8 @@ module.exports = {
             tableName: 'Events',
           },
           key: 'id',
-        }
+        },
+        onDelete: 'CASCADE',
       },
       time1: {
         type: Sequelize.INTEGER,

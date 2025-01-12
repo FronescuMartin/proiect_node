@@ -6,13 +6,16 @@ export default (sequelize, DataTypes) => {
     static associate(models) {
       Result.belongsTo(models.Event, {
         foreignKey: 'eventId',
+        onDelete: 'cascade',
       });
 
       Result.belongsTo(models.Competition, {
         foreignKey: 'competitionId',
+        onDelete: 'cascade',
       });
       Result.belongsTo(models.Competitor, {
         foreignKey: 'competitorId',
+        onDelete: 'cascade',
       });
     }
   }
