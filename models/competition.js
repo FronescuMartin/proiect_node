@@ -7,6 +7,10 @@ export default (sequelize, DataTypes) => {
       Competition.belongsToMany(models.Competitor, {
         through: models.Result,
       });
+
+      Competition.hasMany(models.Result, {
+        foreignKey: 'competitionId',
+      });
     }
   }
   Competition.init({
