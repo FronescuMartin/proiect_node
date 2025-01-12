@@ -16,6 +16,7 @@ const deleteUserResolver = async (_, args, context) => {
     })
 
     if (!user) {
+        console.log("User not found");
         return false;
     }
 

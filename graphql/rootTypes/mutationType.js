@@ -8,6 +8,13 @@ import createEventMutation from '../mutations/createEventMutation.js';
 import createCompetitionMutation from '../mutations/createComptetionMutation.js';
 import { createResult } from '../../core/services/createResultService.js';
 import createResultMutation from '../mutations/createResultMutation.js';
+import updateCurrentUserMutation from '../mutations/updateCurrentUserMutation.js';
+import deleteResultMutation from '../mutations/deleteResultMutation.js';
+import deleteCompetitionMutation from '../mutations/deleteCompetitionMutation.js';
+import deleteEventMutation from '../mutations/deleteEventMutation.js';
+import updateCompetitorMutation from '../mutations/updateCompetitorMutation.js';
+import updateCurrentCompetitorMutation from '../mutations/updateCurrentCompetitorMutation.js';
+import updateCompetitionMutation from '../mutations/updateCompetitionMutation.js';
 
 // Define the Query type
 const queryType = new graphql.GraphQLObjectType({
@@ -15,12 +22,20 @@ const queryType = new graphql.GraphQLObjectType({
     fields: {
         createUser: createUserMutation,
         updateUser: updateUserMutation,
+        updateCurrentUser: updateCurrentUserMutation,
         deleteUser: deleteUserMutation,
+
         login: loginMutation,
         createCompetitor: createCompetitorMutation,
+        updateCompetitor: updateCompetitorMutation,
+        updateCurrentCompetitor: updateCurrentCompetitorMutation,
         createEvent: createEventMutation,
+        deleteEvent: deleteEventMutation,
         createCompetition: createCompetitionMutation,
-        createResult: createResultMutation
+        updateCompetition: updateCompetitionMutation,
+        deleteCompetition: deleteCompetitionMutation,
+        createResult: createResultMutation,
+        deleteResult: deleteResultMutation,
     }
 });
 

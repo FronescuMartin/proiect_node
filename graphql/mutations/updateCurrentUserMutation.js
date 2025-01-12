@@ -4,31 +4,17 @@ import userType from '../types/userType.js';
 import db from '../../models/index.js';
 import bcrypt from 'bcrypt';
 
-const updateUserMutationResolver = async (_, args, context) => {
-    const id = args.id;
-
+const updateCurrentUserMutationResolver = async (_, args, context) => {
     const isAuthorized = !!context.user_id;
 
     if (!isAuthorized) {
         console.log("User is not logged in");
         return false;
     }
-
-    const loggedInUser = await db.User.findOne({
-        where: {
-            id: context.user_id,
-        },
-    });
-
-    // checks if the logged in user is an organizer
-    if (!loggedInUser.isOrganizer) {
-        console.log("User is not an organizer");
-        return false;
-    }
-
+    
     const user = await db.User.findOne({
         where: {
-            id,
+            id: context.user_id,
         },
     });
 
@@ -45,6 +31,7 @@ const updateUserMutationResolver = async (_, args, context) => {
         password = await bcrypt.hash(args.user.password, 5);
     } else {
         password = user.password;
+        console.log(password);
     }
     console.log(args.user);
     const updatedUser = await user.update({
@@ -55,13 +42,12 @@ const updateUserMutationResolver = async (_, args, context) => {
     return updatedUser;
 }
 
-const updateUserMutation = {
+const updateCurrentUserMutation = {
     type: userType,
     args: {
-        id: {type: graphql.GraphQLInt},
         user: {type: userInputType},
     },
-    resolve: updateUserMutationResolver,
+    resolve: updateCurrentUserMutationResolver,
 };
 
-export default updateUserMutation;
+export default updateCurrentUserMutation;
