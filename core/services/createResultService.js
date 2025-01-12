@@ -32,8 +32,9 @@ export const createResult = async (result) => {
     }
 
     const times = result.event.numberOfTimes;
-    const single = Math.min(result.time1, result.time2, result.time3, result.time4, result.time5);
-    const worst = Math.max(result.time1, result.time2, result.time3, result.time4, result.time5);
+    const single = Math.min(result.time1, result.time2, result.time3,
+        result.time4 ? result.time4 : Infinity, result.time5 ? result.time5 : Infinity);
+    const worst = Math.max(result.time1, result.time2, result.time3, result.time4 ? result.time4 : 0, result.time5? result.time5 : 0);
     // if there are 5 times, we calculate the sum of the middle 3 times
     const sum = times == 5 ? 
         (result.time1 + result.time2 + result.time3 + result.time4 + result.time5 - single - worst) : 
@@ -48,8 +49,12 @@ export const createResult = async (result) => {
         time3: result.time3,
         time4: times == 5 ? result.time4 : null,
         time5: times == 5 ? result.time5 : null,
-        single: single,
-        average: sum / 3,
+        // according to some random on stackoverflow
+        // this is the best way to round a number to 2 decimal places
+        // because otherwise 1.005 gets rounded to 1!!!!!!
+        // thank you js!
+        single: Math.round((single + Number.EPSILON) * 100) / 100,
+        average: Math.round((sum / 3 + Number.EPSILON) * 100) / 100,
     };
 
     console.log(toBeCreatedResult);
