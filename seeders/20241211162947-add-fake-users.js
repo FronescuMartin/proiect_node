@@ -21,7 +21,7 @@ module.exports = {
         userId: index + 1,
         name: mockUsers[index].name,
         gender: randomChance < 0.95 ? faker.person.sex() : "other",
-        dateOfBirth: faker.date.between({ from: '2000-01-01', to: Date.now() }),
+        dateOfBirth: faker.date.between({ from: '2000-01-01', to: Date.now() }).toISOString().split('T')[0],
         country: faker.location.country(),
         createdAt: Date(),
         updatedAt: Date(),
