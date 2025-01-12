@@ -4,7 +4,7 @@ const { faker } = require('@faker-js/faker');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    const mockUsers = new Array(100).fill().map(() => {
+    const mockUsers = new Array(200).fill().map(() => {
       return {
         name: faker.internet.username(),
         password: faker.internet.password(),
@@ -14,14 +14,14 @@ module.exports = {
       }
     });
 
-    const mockCompetitors = new Array(100).fill().map((_, index) => {
+    const mockCompetitors = new Array(200).fill().map((_, index) => {
       const randomChance = Math.random();
 
       return {
         userId: index + 1,
         name: mockUsers[index].name,
         gender: randomChance < 0.95 ? faker.person.sex() : "other",
-        dateOfBirth: faker.date.between({ from: '2000-01-01', to: Date.now() }).toISOString().split('T')[0],
+        dateOfBirth: faker.date.between({ from: '1940-01-01', to: '2020-01-01' }).toISOString().split('T')[0],
         country: faker.location.country(),
         createdAt: Date(),
         updatedAt: Date(),
