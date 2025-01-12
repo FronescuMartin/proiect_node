@@ -2,11 +2,10 @@ import { GraphQLObjectType, GraphQLInt, GraphQLFloat } from 'graphql';
 import competitorType from './competitorType.js';
 import competitionType from './competitionType.js';
 import eventType from './eventType.js';
-import competitorWithoutResultType from './competitorWithoutResultType.js';
 import competitionWithoutResultType from './competitionWithoutResultType.js';
 
-const resultType = new GraphQLObjectType({
-    name: 'Result',
+const resultWithoutCompetitorType = new GraphQLObjectType({
+    name: 'ResultWithoutCompetitor',
     fields: {
 /*         competitorId: { type: GraphQLInt },
         competitionId: { type: GraphQLInt },
@@ -18,13 +17,13 @@ const resultType = new GraphQLObjectType({
         time5: { type: GraphQLFloat },
         single: { type: GraphQLFloat },
         average: { type: GraphQLFloat },
-        competitor: {
-            type: competitorWithoutResultType,
+/*         competitor: {
+            type: competitorType,
             resolve: async (result) => {
                 const competitor = await result.getCompetitor();
                 return competitor;
             }
-        },
+        }, */
         competition: {
             type: competitionWithoutResultType,
             resolve: async (result) => {
@@ -42,4 +41,4 @@ const resultType = new GraphQLObjectType({
     }
 });
 
-export default resultType;
+export default resultWithoutCompetitorType;
