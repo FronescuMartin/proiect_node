@@ -11,7 +11,8 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       city: {
         type: Sequelize.STRING,
@@ -102,6 +103,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+    });
+    
+    await queryInterface.addConstraint('Results', {
+      fields: ['competitorId', 'competitionId', 'eventId'],
+      type: 'unique',
+      name: 'unique_competitor_competition_event'
     });
   },
   async down(queryInterface, Sequelize) {

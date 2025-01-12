@@ -14,8 +14,8 @@ const competitorType = new GraphQLObjectType({
         updatedAt: { type: GraphQLString },
         user: { 
             type: userType,
-            resolve: async (post) => {
-                const user = await post.getUser();
+            resolve: async (competitor) => {
+                const user = await competitor.getUser();
 
                 return user;
             }

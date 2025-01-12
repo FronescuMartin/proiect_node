@@ -10,4 +10,4 @@ const competitionInputType = new GraphQLInputObjectType({
     }
 });
 
-export default competitorInputType;
+export default competitionInputType;

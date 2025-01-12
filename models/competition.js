@@ -10,7 +10,10 @@ export default (sequelize, DataTypes) => {
     }
   }
   Competition.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      unique: true
+    },
     city: DataTypes.STRING,
     country: DataTypes.STRING,
     date: DataTypes.DATEONLY

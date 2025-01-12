@@ -14,6 +14,7 @@ const updateUserMutationResolver = async (_, args) => {
     });
 
     if(!user) {
+        console.log("Invalid user");
         return false;
     }
 
