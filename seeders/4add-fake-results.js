@@ -72,7 +72,7 @@ module.exports = {
         times[3] ? times[3] : Infinity, times[4] ? times[4] : Infinity);
       const worst = Math.max(times[0], times[1], times[2], times[3] ? times[3] : 0, times[4] ? times[4] : 0);
       // if there are 5 times, we calculate the sum of the middle 3 times
-      const sum = times == 5 ? 
+      const sum = times.length == 5 ? 
           (times[0] + times[1] + times[2] + times[3] + times[4] - single - worst) : 
           (times[0] + times[1] + times[2]);
 
